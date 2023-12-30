@@ -24,7 +24,7 @@
         </div>
         <p class="text-gray-600 mb-4">Lorem ipsum Lorem description lorem ipsum</p>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Read now</button>
+          <router-link :to="{ name: 'book-item', params: { id: 1 } }" class="btn btn-primary">Read now</router-link>
         </div>
       </div>
     </div>

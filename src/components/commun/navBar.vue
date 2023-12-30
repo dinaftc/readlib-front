@@ -14,7 +14,7 @@
         </ul>
       </div>
 
-      <router-link :to="{ name: 'dashboard' }" :class="[logged ? 'text-2xl text-primary' : 'text-2xl text-white']">
+      <router-link :to="{ name: 'books'}" :class="[logged ? 'text-2xl text-primary' : 'text-2xl text-white']">
         <p>ReadLib</p>
       </router-link>
       
@@ -63,6 +63,6 @@ const route = useRoute();
 
 watch(() => {
   // Check if the current route is 'dashboard'
-  logged.value = route.name === 'dashboard';
+  logged.value = route.name !== 'home';
 });
 </script>
