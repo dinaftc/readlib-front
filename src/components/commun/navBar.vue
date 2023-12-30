@@ -14,9 +14,9 @@
         </ul>
       </div>
 
-      <a :class="[logged ? 'text-2xl text-primary' : 'text-2xl text-white']">
+      <router-link :to="{ name: 'dashboard' }" :class="[logged ? 'text-2xl text-primary' : 'text-2xl text-white']">
         <p>ReadLib</p>
-      </a>
+      </router-link>
       
     </div>
     <div className="navbar-center  hidden lg:flex"  v-if="logged">
