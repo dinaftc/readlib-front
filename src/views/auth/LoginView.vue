@@ -2,7 +2,7 @@
   <div class="w-full h-full flex flex-col items-center gap-4 justify-center">
   <div  class="flex  items-center gap-4 justify-center w-[350px]  h-screen">
    
-           <div v-if="!loadingPage" class="w-full grow flex items-center justify-center">
+           <div v-if="loadingPage" class="w-full grow flex items-center justify-center">
                <span class="loading loading-ring loading-sm"></span>
            </div>
 
@@ -10,10 +10,10 @@
             <a className=" pixa-title text-2xl ">ReadLib</a>
                <div class="form-control w-full flex flex-col">
                    <label class="label">
-                       <span class="label-text">email</span>
+                       <span class="label-text">username</span>
                    </label>
                    <div class="w-full h-fit relative flex items-center">
-                   <input type="text" v-model="user.email"
+                   <input type="text" v-model="user.username"
                    class=" pr-12 block w-full h-10 rounded-md border-0 py-1.5  text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
 
                    <button class="right-1 btn btn-sm btn-square rounded absolute  btn-ghost">
@@ -69,23 +69,23 @@ Register now
 <script setup>
 import arrowRight from '@/assets/icons/arrowRight.vue'
 
-import {   ref } from 'vue'
+import {   ref , onMounted} from 'vue'
 import { useRouter } from 'vue-router'
 import userIcon from '@/assets/icons/userIcon.vue'
 import eyeIcon from '../../assets/icons/eyeIcon.vue'
 import eyeSlash from '@/assets/icons/eyeSlash.vue'
 
 import axios from 'axios'
-
-
-
-const loading = ref(!true)
+import {useAuthStore} from '@/stores/auth'
+const router=useRouter()
+const useAuth=useAuthStore()
+const loading = ref(false)
 const isPassword = ref(true)
-const loadingPage = ref(true)
+const loadingPage = ref(false)
 
 const user = ref(
    {
-       username: '',
+      username: '',
        password: ''
    }
 )
@@ -94,20 +94,20 @@ const user = ref(
 const login = () => {
    loading.value = true
    axios.defaults.headers.common["Authorization"] = ""
-   /**  useAuth.login(user.value.username, user.value.password)*/
+   useAuth.login(user.value.username, user.value.password)
 }
-/**
+
 onMounted(async () => {
-   await useAuth.initStore()
+   
    if (useAuth.authUser.isAuthenticated) {
-       router.push({ name: 'app' })
+       router.push({ name: 'books' })
    }
    else {
        setTimeout(() => {
            loadingPage.value = false
        }, 500)
    }
-})*/
+})
 </script>
 
 <style lang="scss" scoped></style>

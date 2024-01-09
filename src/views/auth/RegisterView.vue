@@ -9,36 +9,51 @@
   
           <div class="form-control w-full sm:w-80 flex flex-col">
             <label class="label">
-              <span class="label-text">First Name <span class="text-red-500">*</span></span>
+              <span class="label-text">Username <span class="text-red-500">*</span></span>
             </label>
-            <input type="text" class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
+            <input v-model="useAuth.userToAdd.username"
+            type="text" class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
           </div>
   
           <div class="form-control w-full sm:w-80 flex flex-col">
             <label class="label">
-              <span class="label-text">Last Name<span class="text-red-500">*</span></span>
+              <span class="label-text">Email<span class="text-red-500">*</span></span>
             </label>
-            <input type="text" class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
+            <input type="text" 
+            v-model="useAuth.userToAdd.email"
+            class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
           </div>
   
           <div class="form-control w-full sm:w-80 flex flex-col">
             <label class="label">
-              <span class="label-text">Email <span class="text-red-500">*</span></span>
+              <span class="label-text">Age<span class="text-red-500">*</span></span>
             </label>
-            <input type="text" class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
+            <input type="text"
+            v-model="useAuth.userToAdd.age"
+             class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
+          </div>
+          <div class="form-control w-full sm:w-80 flex flex-col">
+            <label class="label">
+              <span class="label-text">Location<span class="text-red-500">*</span></span>
+            </label>
+            <input type="text"
+            v-model="useAuth.userToAdd.location"
+             class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6" />
           </div>
   
           <div class="form-control w-full sm:w-80 flex flex-col">
             <label class="label">
               <span class="label-text">Password <span class="text-red-500">*</span></span>
             </label>
-            <input type="password" class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset placeholder:text-gray-400 focus:ring-1 focus:ring-inset sm:text-sm sm:leading-6 ring-gray-300 focus:ring-primary" />
+            <input type="password"
+            v-model="useAuth.userToAdd.password"
+             class="block w-full h-10 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset placeholder:text-gray-400 focus:ring-1 focus:ring-inset sm:text-sm sm:leading-6 ring-gray-300 focus:ring-primary" />
             <span class="label-text mt-1 text-xs">Password must be at least 8 characters</span>
           </div>
         </div>
       </div>
       <div class="form-control w-full sm:w-80 flex flex-col">
-      <button @click="register" class="btn btn-primary w-full mt-2 btn-sm capitalize fill-white flex justify-center flox-col px-10 group">
+      <button @click="useAuth.register" class="btn btn-primary w-full mt-2 btn-sm capitalize fill-white flex justify-center flox-col px-10 group">
         Register
         <span v-if="loading" class="loading loading-ring loading-sm"></span>
       </button>
@@ -48,6 +63,9 @@
   
   <script setup>
   // Your script setup goes here
+  import {useAuthStore} from '@/stores/auth'
+
+const useAuth=useAuthStore()
   </script>
   
   <style lang="scss" scoped>
