@@ -5,6 +5,7 @@ import RegisterView from '@/views/auth/RegisterView.vue';
 import MainPanel from '@/views/MainPanel.vue';
 import DashboardView from '@/views/dashboardView.vue';
 import BookItemView from '@/views/books/bookItemView.vue';
+import RecommandationView from '@/views/recommandationView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,7 +40,11 @@ const router = createRouter({
               component: BookItemView, 
             },
          
-        
+            {
+              path: 'recommended', 
+              name: 'recommended',
+              component: RecommandationView, 
+            },
       ],
     },
   ],

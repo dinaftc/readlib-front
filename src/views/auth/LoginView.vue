@@ -99,7 +99,7 @@ const login = () => {
 
 onMounted(async () => {
    
-   if (useAuth.authUser.isAuthenticated) {
+   if (useAuth.isAuthenticated) {
        router.push({ name: 'books' })
    }
    else {

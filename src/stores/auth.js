@@ -1,16 +1,14 @@
-import { reactive } from 'vue'
+import { reactive,ref } from 'vue'
 import { defineStore } from 'pinia'
-import Cookies from 'js-cookie'
+
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('auth', () => {
   const router = useRouter()
- 
-  const authUser = reactive({
-    isAuthenticated: false,
-    userDetail: null
-  })
+  const  isAuthenticated=ref(false)
+  const  userId= ref('')
+  
 
   const userToAdd=reactive({
     age:'',
@@ -24,14 +22,11 @@ export const useAuthStore = defineStore('auth', () => {
   const login = async (username, password) => {
     try {
       let response = await axios.post('/api/login/', { username, password })
-      Cookies.set('access', response.data.access)
-      Cookies.set('refresh', response.data.refresh)
-      authUser.isAuthenticated = true
-        authUser.userDetail = response.data
-
+      isAuthenticated.value = true
+   userId.value = response.data.id
+    console.log(userId.value)
           router.push({ name: 'books' })
         
-      
     } catch (error) {
       console.error('Login failed:', error.response ? error.response.data : error.message)
     }
@@ -48,13 +43,11 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const signOut = async () => {
-    authUser.isAuthenticated = false
-    Cookies.remove('access')
-    Cookies.remove('refresh')
-    authUser.isAuthenticated = false
-        authUser.userDetail = ''
+   
+    isAuthenticated.value = false
+    userId.value = ''
     router.push({ name: 'login' })
   }
 
-  return { authUser, login, signOut ,userToAdd,register}
+  return { userId,isAuthenticated, login, signOut ,userToAdd,register}
 })

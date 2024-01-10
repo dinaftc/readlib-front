@@ -1,11 +1,11 @@
 <template>
     <div class="card w-96 h-106 bg-base-100 shadow-xl">
       <figure>
-        <img src="@/assets/images/book.jpg" alt="Book 1 image" />
+        <img :src="book.image_url_medium || '@/assets/images/book.jpg'" alt="Book Image" />
       </figure>
       <div class="card-body">
         <div class="flex justify-between mb-4">
-          <h2 class="card-title text-lg font-semibold mb-2">Book 1</h2>
+          <h2 class="card-title text-lg font-semibold mb-2">{{book.titre}}</h2>
   
           <div class="flex space-x-1">
             <template v-for="i in 5">
@@ -21,11 +21,14 @@
             </template>
           </div>
           
-        </div>
-        <p class="text-gray-600 mb-4">Lorem ipsum Lorem description lorem ipsum</p>
-        <div class="card-actions justify-end">
-          <router-link :to="{ name: 'book-item', params: { id: 1 } }" class="btn btn-primary">Read now</router-link>
-        </div>
+        </div >
+        <p class="text-gray-600 mb-4">{{ book.categorie_nom }}</p>
+       
+        <div class='flex justify-between'>  <p class="text-gray-600 mb-4">  by: {{book.auteur}}</p>
+          </div>
+          <div class="card-actions justify-end">
+            <router-link :to="{ name: 'book-item', params: { id: book.id_l }}" class="btn btn-primary">Read now</router-link>
+          </div>
       </div>
     </div>
   </template>
@@ -33,5 +36,7 @@
   import { ref } from 'vue';
   
   const rating=ref(3)
+  const props = defineProps(['book'])
+
   </script>
   

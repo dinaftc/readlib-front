@@ -21,9 +21,9 @@
     </div>
     <div className="navbar-center  hidden lg:flex"  v-if="logged">
       <ul className="menu menu-horizontal px-1">
-        <li><a>explore Books</a></li>
+        <li><router-link :to="{ name: 'books' }" >explore Books</router-link></li>
         <li>
-          <a>For you</a>
+          <router-link :to="{ name: 'recommended' }" >For you</router-link>
         </li>
         <li><a>About us</a></li>
       </ul>
@@ -37,23 +37,18 @@
     </router-link> </div>
 
     
-    <div  v-if="logged" className=" navbar-end ">
+  <div class='navbar-end' v-if="logged"> 
+    <div className=" dropdown dropdown-end" >
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
         </div>
       </div>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-       
-          
         <li><a>Settings</a></li>
         <li><button @click='useAuth.signOut' >Logout</button></li>
       </ul>
-      
-    </div>
-      
-       
-     
+    </div>  </div>
     </div>
   
 </template>
